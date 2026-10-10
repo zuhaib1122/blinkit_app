@@ -1,3 +1,4 @@
-stream    lit
+streamlit
 pandas
 plotly
+numpy
