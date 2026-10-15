@@ -32,7 +32,7 @@ for col_names, selected_values in filters.items():
              filtered_df = filtered_df[filtered_df[col_names].isin(selected_values)]
 
 # main dashboard
-col1, col2 = st.columns([4.5,2.5])
+col1, col2 = st.columns([4.5,2.5], wrap = False)
 with col1:
     st.markdown("# **Sales Dashboard**")
     st.markdown("#### A comprehensive overview of orders, revenue performance & customer metrics")
@@ -43,7 +43,7 @@ with col1:
     total_orders = filtered_df['Order ID'].nunique()
     st.markdown("### Top KPI's Summary Cards")
     with st.container(border=True):
-        colmd1, colmd2, colmd3 = st.columns([2, 1, 1])
+        colmd1, colmd2, colmd3 = st.columns([2, 1, 1], wrap = False)
     with colmd1:
         st.metric("Revenue", f"Rs {total_revenue:,.2f}")
     with colmd2:
@@ -54,7 +54,7 @@ with col1:
 with col2:
     st.subheader("Data Quality")
     with st.container(border=True):
-         col1, col2 = st.columns([2, 1])
+         col1, col2 = st.columns([2, 1], wrap = False)
          with col1:
             st.markdown(f"**Null values:** {df.isnull().sum().sum()}")
             st.markdown(f"**Duplicate rows:** {df.duplicated().sum()}")
@@ -94,7 +94,7 @@ top_cat = filtered_df.groupby('Category')['Net Amount'].sum().reset_index()
 top_cat = top_cat.sort_values(by='Net Amount', ascending=False)
 top_cat_5 = top_cat.head(10)
 st.markdown("### Top Categories by Revenue ")
-col_a, col_b = st.columns([2,4])
+col_a, col_b = st.columns([2,4], wrap = False)
 with col_a:
     st.dataframe(top_cat_5, use_container_width=True, hide_index=True)
 with col_b:
@@ -118,7 +118,7 @@ top_city = filtered_df.groupby('City')['Net Amount'].sum().reset_index()
 top_city = top_city.sort_values(by='Net Amount', ascending=False)
 top_city_5 = top_city.head(4)
 st.markdown("### Top Cities by Revenue ")
-col_a1, col_b1 = st.columns([2,4])
+col_a1, col_b1 = st.columns([2,4], wrap = False)
 with col_a1:
     st.dataframe(top_city_5, use_container_width=True, hide_index=True)
 with col_b1:
